@@ -70,4 +70,3 @@ variable "db_pass" {
   sensitive   = true
 }
 
-

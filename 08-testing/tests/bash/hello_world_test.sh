@@ -13,8 +13,9 @@ terraform apply -auto-approve
 sleep 60 
 
 # Query the output, extract the IP and make a request
-terraform output -json |\
-jq -r '.instance_ip_addr.value' |\
+terraform output -json | \
+jq -r '.instance_ip_addr.value' | \
+tr -d '\r' | \
 xargs -I {} curl http://{}:8080 -m 10
 
 # If request succeeds, destroy the resources
